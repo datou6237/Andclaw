@@ -174,8 +174,9 @@ internal class FeishuApiClient(
         runCatching {
             val requestBody = okhttp3.MultipartBody.Builder()
                 .setType(okhttp3.MultipartBody.FORM)
+                .addFormDataPart("image_type", "message")
                 .addFormDataPart(
-                    "image_type", "message",
+                    "image", imageName,
                     okhttp3.RequestBody.create("image/png".toMediaType(), imageBytes)
                 )
                 .build()
