@@ -83,12 +83,11 @@ internal class FeishuApiClient(
         runCatching {
             val body = JsonObject().apply {
                 addProperty("receive_id", receiveId)
-                addProperty("receive_id_type", receiveIdType)
                 addProperty("msg_type", msgType)
                 addProperty("content", content)
             }
             val request = Request.Builder()
-                .url("$BASE_URL/im/v1/messages")
+                .url("$BASE_URL/im/v1/messages?receive_id_type=$receiveIdType")
                 .header("Authorization", "Bearer $accessToken")
                 .post(body.toString().toRequestBody(JSON))
                 .build()

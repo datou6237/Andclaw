@@ -87,7 +87,7 @@ object AgentController : ITgBridgeService, IAiConfigService {
         return base + when (session?.channel) {
             RemoteChannel.TELEGRAM -> "（远程已发送到 Telegram）"
             RemoteChannel.CLAWBOT -> "（ClawBot 暂不支持图片远程回传；本地已保存，应用将尝试向远端发送文本说明）"
-            RemoteChannel.FEISHU -> "（飞书暂不支持图片远程回传；本地已保存）"
+            RemoteChannel.FEISHU -> "（已发送到飞书）"
             else -> ""
         }
     }

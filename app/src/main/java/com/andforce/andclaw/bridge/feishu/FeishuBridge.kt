@@ -93,7 +93,12 @@ internal class FeishuBridge(
                     return@withContext
                 }
                 
-                apiClient.sendImageMessage(token, chatId, "chat_id", imageKey)
+                val sendResult = apiClient.sendImageMessage(token, chatId, "chat_id", imageKey)
+                if (sendResult.isFailure) {
+                    Log.e(TAG, "Failed to send image: ${sendResult.exceptionOrNull()?.message}")
+                    sendText(session, "[截图发送失败]")
+                    return@withContext
+                }
                 Log.d(TAG, "Image sent successfully")
             } catch (e: Exception) {
                 Log.e(TAG, "sendPhoto failed: ${e.message}")
